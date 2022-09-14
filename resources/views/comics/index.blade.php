@@ -6,6 +6,7 @@
 
     <div class="container-lg">
         <div class="row">
+            <a class="button button-primary"href="{{route('comics.create')}}">Create new</a>
             <div class="col-12">
                 <table class="table">
                     <thead class="thead-dark">

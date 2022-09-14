@@ -4,7 +4,7 @@
 
 @section('main-content')
 <div class="container-lg">
-                <form action="{{route('comics.store')}}" method="post"></form>
+                <form action="{{route('comics.store')}}" method="post">
                 @csrf
                 <div class="mb-3">
                 <label for="Title" class="form-label">Title</label>
@@ -32,5 +32,9 @@
                     <option value="Graphic Novel">Graphic Novel</option>
                     <option selected value="Other">Other</option>
                 </select>
+
+               <input type="submit" class="btn btn-success mt-2" value="Submit">
+            </form>
+
 </div>
 @endsection

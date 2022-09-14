@@ -3,13 +3,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Comics | @yeald('title')</title>
+    <title> Comics |  @yield('title') </title>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <script src="{{asset('js/app.js')}}" defer></script>
 </head>
 <body>
     @include('includes.header')
-<main>
+<main class="bg-warning p-3">
     @yield('main-content')
 </main>
     @include('includes.footer')

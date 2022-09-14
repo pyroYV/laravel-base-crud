@@ -3,7 +3,7 @@
 @section('title','Main Comics')
 
 @section('main-content')
-<div class="container-lg">
+<div class="container-lg bg-warning">
                 <form action="{{route('comics.store')}}" method="post">
                 @csrf
                 <div class="mb-3">

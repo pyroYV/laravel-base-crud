@@ -6,7 +6,6 @@
 
     <div class="container-lg">
         <div class="row">
-            <a class="button button-primary"href="{{route('comics.create')}}">Create new</a>
             <div class="col-12">
                 <table class="table">
                     <thead class="thead-dark">
@@ -21,14 +20,31 @@
 
                     </thead>
                     <tbody>
+                        @foreach ($comics as $comic)
+                        <tr>
+                            <th scope="col">
+                                <a href="{{route('comics.show', $comic->id)}}">{{$comic->id}}</a>
+                            </th>
+                            <th scope="col" colspan="2">
+                                <h5>{{$comic->title}}</h5>
+                            </th>
+                            <th scope="col">
+                                <h5>{{$comic->price}}</h5>
+                            </th>
+                            <th scope="col">
+                                <h5>{{$comic->series}}</h5>
+                            </th>
+                            <th scope="col">
+                                <h5>{{$comic->sale_date}}</h5>
+                            </th>
+                            <th scope="col">
+                                <h5>{{$comic->type}}</h5>
+                            </th>
+                        </tr>
+
+                        @endforeach
                     </tbody>
                 </table>
-                @foreach ($comics as $comic)
-                <ul>
-               <li><a href="{{route('comics.show', $comic->id)}}">{{$comic->id}}</a>
-               <h5>{{$comic->title}}</h5></li>
-                </ul>
-                @endforeach
             </div>
         </div>
     </div>

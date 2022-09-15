@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comic;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class ComicController extends Controller
@@ -107,6 +108,10 @@ class ComicController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
+        $comic = Comic::findorFail($id);
+        $comic->delete();
+
+        return redirect()->route('comics.index');
     }
 }

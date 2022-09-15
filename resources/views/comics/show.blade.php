@@ -4,6 +4,9 @@
 
 @section('main-content')
 <div class="container-lg bg-success rounded">
+    @if (Session::has('message'))
+    <div class="alert alert-info">{{ Session::get('message') }}</div>
+    @endif
     <div class="row p-5">
         <div class="col-6 align-center">
           <img class="img-fluid" src="{{$comic->thumb}}" alt="{{$comic->series}}">

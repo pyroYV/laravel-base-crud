@@ -5,7 +5,11 @@
 @section('main-content')
 
     <div class="container-lg">
+        @if (Session::has('message'))
+        <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
         <div class="row">
+
             <div class="col-12">
                 <table class="table">
                     <thead class="thead-dark">

@@ -50,6 +50,7 @@ class ComicController extends Controller
         $newComic->type = $data['type'];
         $newComic->save();
 
+        $request->session()->flash('message', 'Creazione di ' . $newComic->title . ' effettuata con successo');
         return redirect()->route('comics.show', $newComic->id);
 
     }
@@ -97,6 +98,8 @@ class ComicController extends Controller
         $comic->type = $sentData['type'];
         $comic->save();
 
+        $request->session()->flash('message', 'Update effettuato con successo!' . $comic->title);
+
         return redirect()->route('comics.show',$comic->id);
     }
 
@@ -106,12 +109,13 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        dd($id);
+
         $comic = Comic::findorFail($id);
         $comic->delete();
 
+        $request->session()->flash('message', 'Eliminazione effettuata con successo!');
         return redirect()->route('comics.index');
     }
 }

@@ -16,6 +16,7 @@
                             <th scope="col">Series</th>
                             <th scope="col">Sale Date</th>
                             <th scope="col">Type</th>
+                            <th scope="col">Options</th>
                         </tr>
 
                     </thead>
@@ -39,6 +40,9 @@
                             </th>
                             <th scope="col">
                                 <h5>{{$comic->type}}</h5>
+                            </th>
+                            <th scope="col">
+                                <a href="{{ route('comics.edit', $comic->id )}}" class="btn btn-primary">Edit</a>
                             </th>
                         </tr>
 

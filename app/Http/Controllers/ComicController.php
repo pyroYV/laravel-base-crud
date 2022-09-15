@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comic;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use illuminate\support\Str;
 
 class ComicController extends Controller
 {
@@ -48,7 +49,7 @@ class ComicController extends Controller
         $newComic->series = $data['series'];
         $newComic->sale_date = $data['sale_date'];
         $newComic->type = $data['type'];
-        $newComic->slug = $data['slug'];
+        $newComic->slug = Str::slug( $newComic->title .'-').'-' .$newComic->id;
         $newComic->save();
 
         $request->session()->flash('message', 'Creazione di ' . $newComic->title . ' effettuata con successo');

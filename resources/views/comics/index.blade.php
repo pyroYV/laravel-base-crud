@@ -28,7 +28,7 @@
                         @foreach ($comics as $comic)
                         <tr>
                             <td scope="col">
-                                <a href="{{route('comics.show', $comic->id)}}">{{$comic->id}}</a>
+                                <a href="{{route('comics.show', $comic->slug)}}">{{$comic->id}}</a>
                             </td>
                             <td scope="col" colspan="2">
                                 <h5>{{$comic->title}}</h5>

@@ -41,15 +41,17 @@
                             <td scope="col">
                                 <h5>{{$comic->type}}</h5>
                             </td>
-                            <td scope="col" colspan="4">
+                            <td scope="col" colspan="2">
                                 {{-- edit --}}
                                 <a href="{{ route('comics.edit', $comic->id )}}" class="btn btn-primary">Edit</a>
                                 {{-- delete --}}
+                            </td>
+                            <td scope="col" colspan="2">
                                 <form action =" {{route ('comics.destroy', $comic->id) }}"
                                     method="POST" class="d-inline">
                                    @csrf
                                    @method('DELETE')
-                                   <button type = "submit"  class="btn btn-danger d-inline"> Delete {{$comic->id}}</button>
+                                   <button type = "submit"  class="btn btn-danger d-inline"> Delete</button>
                                 </form>
                             </td>
                         </tr>

@@ -29,9 +29,27 @@
                 </div>
                 <label for="form-select" class="form-label">Type</label>
                 <select class="form-select" aria-label="Default select example" name="type">
-                    <option value="Comic Book">Comic Book</option>
-                    <option value="Graphic Novel">Graphic Novel</option>
-                    <option selected value="Other">Other</option>
+                    <option
+                    @if ($comic->type === 'Comic Book')
+                        {
+                        {{'selected'}}
+                        }
+                    @endif
+                    value="Comic Book">Comic Book</option>
+                    <option
+                    @if($comic->type === 'Graphic Novel')
+                        {
+                        {{'selected'}}
+                        }
+                    @endif
+                    value="Graphic Novel">Graphic Novel</option>
+                    <option
+                    @if($comic->type === 'Other')
+                        {
+                        {{'selected'}}
+                        }
+                    @endif
+                    value="Other">Other</option>
                 </select>
 
                <a href="{{route('comics.show', $comic->id )}}"><input type="submit" class="btn btn-success mt-2" value="Submit"></a>

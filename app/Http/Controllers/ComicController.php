@@ -48,10 +48,11 @@ class ComicController extends Controller
         $newComic->series = $data['series'];
         $newComic->sale_date = $data['sale_date'];
         $newComic->type = $data['type'];
+        $newComic->slug = $data['slug'];
         $newComic->save();
 
         $request->session()->flash('message', 'Creazione di ' . $newComic->title . ' effettuata con successo');
-        return redirect()->route('comics.show', $newComic->id);
+        return redirect()->route('comics.show', $newComic->slug);
 
     }
 
@@ -73,9 +74,9 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $comic = Comic::findorFail($id);
+        $comic = Comic::where('slug', $slug)->firstOrFail();
         return view('comics.edit', compact('comic'));
     }
 
@@ -86,21 +87,22 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $sentData = $request -> all();
-        $comic = Comic::findorFail($id);
+        $comic = Comic::where('slug', $slug)->firstOrFail();
         $comic->title = $sentData['title'];
         $comic->thumb = $sentData['thumb'];
         $comic->price = $sentData['price'];
         $comic->series = $sentData['series'];
         $comic->sale_date = $sentData['sale_date'];
         $comic->type = $sentData['type'];
+        $comic->slug = $sentData['slug'];
         $comic->save();
 
         $request->session()->flash('message', 'Update effettuato con successo!' . $comic->title);
 
-        return redirect()->route('comics.show',$comic->id);
+        return redirect()->route('comics.show',$comic->slug);
     }
 
     /**
@@ -109,10 +111,10 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request,$slug)
     {
 
-        $comic = Comic::findorFail($id);
+        $comic = Comic::where('slug', $slug)->firstOrFail();
         $comic->delete();
 
         $request->session()->flash('message', 'Eliminazione effettuata con successo!');

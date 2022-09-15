@@ -2,7 +2,7 @@
 
 use App\Models\Comic;
 use Illuminate\Database\Seeder;
-use illuminate\Support\Str
+use illuminate\Support\Str;
 
 class SlugSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class SlugSeeder extends Seeder
     {
         $comics = Comic::all();
         foreach ($comics as $comic) {
-           $comic->slug = Str::slug( $comic->title ).'-' .$comic->id;
+           $comic->slug = Str::slug( $comic->title .'-').'-' .$comic->id;
            $comic->save();
         }
 

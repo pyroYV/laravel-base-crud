@@ -40,18 +40,20 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $data = $request->all();
 
+        $data = $request->all();
         $newComic = new Comic;
-        $newComic->title = $data['title'];
+    /*  $newComic->title = $data['title'];
         $newComic->thumb = $data['thumb'];
         $newComic->price = $data['price'];
         $newComic->series = $data['series'];
         $newComic->sale_date = $data['sale_date'];
-        $newComic->type = $data['type'];
+        $newComic->type = $data['type']; */
+
         $lastId = DB::table('comics')->orderBy('id','desc')->first();
         $newComic->slug = Str::slug( $newComic->title .'-').'-' .$lastId->id;
+
+        $newComic->fill($data);
         $newComic->save();
 
         $request->session()->flash('message', 'Creazione di ' . $newComic->title . ' effettuata con successo');
@@ -94,14 +96,15 @@ class ComicController extends Controller
     {
         $sentData = $request -> all();
         $comic = Comic::where('slug', $slug)->firstOrFail();
-        $comic->title = $sentData['title'];
+        /* $comic->title = $sentData['title'];
         $comic->thumb = $sentData['thumb'];
         $comic->price = $sentData['price'];
         $comic->series = $sentData['series'];
         $comic->sale_date = $sentData['sale_date'];
         $comic->type = $sentData['type'];
-        $comic->slug = $sentData['slug'];
-        $comic->save();
+        $comic->slug = $sentData['slug']; */
+        /* $comic->save();  */
+        $comic->update($sentData);
 
         $request->session()->flash('message', 'Update effettuato con successo!' . $comic->title);
 

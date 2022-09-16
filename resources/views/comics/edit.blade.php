@@ -4,7 +4,7 @@
 
 @section('main-content')
 <div class="container-lg bg-warning">
-                <form action="{{route('comics.update', $comic->id)}}" method="post">
+                <form action="{{route('comics.update', $comic->slug)}}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
@@ -52,7 +52,7 @@
                     value="Other">Other</option>
                 </select>
 
-               <a href="{{route('comics.show', $comic->id )}}"><input type="submit" class="btn btn-success mt-2" value="Submit"></a>
+               <a href="{{route('comics.show', $comic->slug )}}"><input type="submit" class="btn btn-success mt-2" value="Submit"></a>
             </form>
 
 </div>

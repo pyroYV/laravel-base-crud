@@ -40,7 +40,7 @@
                     <label for="Series" class="form-label">Series</label>
                     <input type="text" class="form-control" id="Series" value="{{old('series', $comic->series)}}" name="series">
                 </div>
-                        @error('thumb')
+                        @error('series')
                         <div class="alert alert-danger">
                             {{$message}}
                         </div>

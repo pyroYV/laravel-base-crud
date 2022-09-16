@@ -10,6 +10,14 @@ use illuminate\support\Str;
 
 class ComicController extends Controller
 {
+    protected $validationRules = [
+        'title' => 'required|string|min:3|unique:comics,title',
+        'thumb' => 'required|active_url',
+        'price' => 'required|numeric',
+        'series' => 'required|string|min:3',
+        'sale_date' => 'required|date ',
+        'type' => 'required| exists:type',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -42,6 +50,7 @@ class ComicController extends Controller
     {
 
         $data = $request->all();
+        $validatedData = $request->validate($this->validationRules);
         $newComic = new Comic;
     /*  $newComic->title = $data['title'];
         $newComic->thumb = $data['thumb'];
@@ -95,6 +104,7 @@ class ComicController extends Controller
     public function update(Request $request, $slug)
     {
         $sentData = $request -> all();
+        $validatedData = $request ->validate($this->validationRules);
         $comic = Comic::where('slug', $slug)->firstOrFail();
         /* $comic->title = $sentData['title'];
         $comic->thumb = $sentData['thumb'];

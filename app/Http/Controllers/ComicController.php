@@ -16,7 +16,7 @@ class ComicController extends Controller
         'price' => 'required|numeric',
         'series' => 'required|string|min:3',
         'sale_date' => 'required|date ',
-        'type' => 'required| exists:type',
+        'type' => 'required| exists:comics',
     ];
     /**
      * Display a listing of the resource.
@@ -36,8 +36,8 @@ class ComicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('comics.create');
+    {   $comic = new Comic;
+        return view('comics.create', compact('comic'));
     }
 
     /**
@@ -58,11 +58,9 @@ class ComicController extends Controller
         $newComic->series = $data['series'];
         $newComic->sale_date = $data['sale_date'];
         $newComic->type = $data['type']; */
-
+        $newComic->fill($data);
         $lastId = DB::table('comics')->orderBy('id','desc')->first();
         $newComic->slug = Str::slug( $newComic->title .'-').'-' .$lastId->id;
-
-        $newComic->fill($data);
         $newComic->save();
 
         $request->session()->flash('message', 'Creazione di ' . $newComic->title . ' effettuata con successo');
